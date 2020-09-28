@@ -6,10 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
 import lombok.Builder;
 import lombok.Data;
-
 
 @Entity
 @Table(name = "usuario", schema = "financas")
@@ -30,6 +28,6 @@ public class Usuario {
 	
 	@Column(name = "senha")
 	private String senha;
-	
+
 	
 }
