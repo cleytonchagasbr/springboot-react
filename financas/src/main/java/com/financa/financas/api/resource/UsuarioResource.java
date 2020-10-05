@@ -2,13 +2,13 @@ package com.financa.financas.api.resource;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.financa.financas.api.dto.UsuarioDTO;
+import com.financa.financas.exception.AutenticacaoException;
 import com.financa.financas.exception.RegrasExpections;
 import com.financa.financas.model.entity.Usuario;
 import com.financa.financas.service.UsuarioService;
@@ -21,6 +21,22 @@ public class UsuarioResource {
 	
 	public UsuarioResource(UsuarioService service) {
 		this.service = service;
+	}
+	
+	@PostMapping("/autenticar")
+	public ResponseEntity autenticar(@RequestBody UsuarioDTO dto) {
+		
+		try {
+			
+			Usuario usuarioAutenticado = service.autenticar(dto.getEmail(), dto.getSenha());
+			return ResponseEntity.ok(usuarioAutenticado);
+			
+		
+		} catch (AutenticacaoException e) {
+			return ResponseEntity.badRequest().body(e.getMessage());
+		}
+		
+	
 	}
 	
 	@PostMapping
