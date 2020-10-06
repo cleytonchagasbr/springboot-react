@@ -1,11 +1,18 @@
 import React from 'react';
+import 'bootswatch/dist/flatly/bootstrap.css';
+import Login from './views/login';
 
-function App() {
-  return (
-    <div className="App">
-     
-    </div>
-  );
+class App extends React.Component {
+
+  render() {
+    return (
+      <div className="App">
+        <Login />
+      </div>
+    )
+    
+  }
+  
 }
 
 export default App;
